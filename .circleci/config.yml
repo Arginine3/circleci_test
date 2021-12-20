@@ -40,6 +40,8 @@ jobs:
           command: php artisan config:cache
       - run:
           command: php artisan config:clear
+      - run: touch database/development.sqlite3
+      - run: php artisan migrate --env=testing --database=sqlite_testing --force
       - run:
           name: php test
           command: vendor/bin/phpunit tests/Feature
